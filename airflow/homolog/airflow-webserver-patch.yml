@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: airflow-webserver
-          image: apache/airflow:2.5.0  # Substitua pela versão correta
-          ports:
-            - containerPort: 8080
+          image: apache/airflow:2.5.0
+          command: ["airflow", "webserver"]
+          args: ["-p", "8080"]
           env:
             - name: AIRFLOW__CORE__EXECUTOR
               value: SequentialExecutor
