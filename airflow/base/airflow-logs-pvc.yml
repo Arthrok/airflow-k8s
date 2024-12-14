@@ -2,9 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: airflow-logs
+  namespace: airflow-base
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi  # Certifique-se de que este campo está presente
+      storage: 1Gi

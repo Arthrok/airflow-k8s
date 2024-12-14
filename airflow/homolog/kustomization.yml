@@ -2,5 +2,6 @@ resources:
   - ../base
 
 patches:
-  - path: airflow-webserver-patch.yml
-  - path: secrets.yml
+  - path: deployment-patch.yml
+
+namespace: airflow-homolog  # Namespace do overlay

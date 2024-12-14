@@ -1,14 +1,21 @@
 resources:
-  - pvc-dags.yml
-  - pvc-logs.yml
-  - deployment-patch.yml
+  - airflow-db-pvc.yml
+  - airflow-dags-pvc.yml
+  - airflow-logs-pvc.yml
   - airflow-secrets.yml
   - airflow-webserver-service.yml
+  - deployment.yml
 
 patches:
   - path: deployment-patch.yml
 
+namespace: airflow-base  # Namespace explícito
+
 configMapGenerator:
   - name: airflow-config
-    files:
-      - airflow-values.yml
+    literals:
+      - executor=CeleryKubernetesExecutor
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
+      - AIRFLOW__CORE__PLUGINS_FOLDER=/opt/airflow/plugins
+      - AIRFLOW__CORE__LOGGING_LEVEL=INFO
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False

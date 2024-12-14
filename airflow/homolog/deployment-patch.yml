@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: airflow-webserver
-  namespace: airflow-base  # Namespace deve corresponder ao recurso base
+  namespace: airflow-base  # Deve corresponder ao namespace do recurso no base
 spec:
+  replicas: 3  # Alteração específica para homolog
   template:
     spec:
       containers:
@@ -12,4 +13,4 @@ spec:
             - name: AIRFLOW__CORE__EXECUTOR
               value: CeleryKubernetesExecutor
             - name: AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER
-              value: s3://airflow-logs
+              value: s3://airflow-homolog-logs

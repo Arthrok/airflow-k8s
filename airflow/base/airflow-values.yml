@@ -1,3 +1,13 @@
-executor: SequentialExecutor
-config:
-  AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+executor: CeleryKubernetesExecutor
+
+logging:
+  remote_logging: True
+  remote_base_log_folder: s3://airflow-logs
+  remote_log_conn_id: aws_default
+
+gitSync:
+  enabled: true
+  repo: https://gitlab.com/lappis-unb/gest-odadosipea/data-mapping
+  branch: main
+  subPath: ""
+  credentialsSecret: airflow-git-credentials

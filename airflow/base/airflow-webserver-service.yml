@@ -2,12 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: airflow-webserver
-  namespace: airflow-homolog
+  namespace: airflow-base
 spec:
   selector:
-    app: airflow-webserver  # Deve corresponder às labels dos pods
+    app: airflow-webserver
   ports:
-    - protocol: TCP
-      port: 8000            # Porta do serviço
-      targetPort: 8080      # Porta do contêiner no pod
-  type: ClusterIP           # Pode mudar para NodePort ou LoadBalancer conforme necessário
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
