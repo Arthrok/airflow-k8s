@@ -2,21 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: airflow-webserver
+  namespace: airflow-homolog
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: airflow-webserver  # Define o seletor
+      app: airflow-webserver
   template:
     metadata:
       labels:
-        app: airflow-webserver  # Deve corresponder ao seletor
-    spec:
-      containers:
-        - name: airflow-webserver
-          image: apache/airflow:2.5.0
-          command: ["airflow", "webserver"]
-          args: ["-p", "8080"]
-          env:
-            - name: AIRFLOW__CORE__EXECUTOR
-              value: SequentialExecutor
+        app: airflow-webserver
+  spec:
+    containers:
+      - name: airflow-webserver
+        image: apache/airflow:2.5.0
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            airflow db init &&
+            airflow webserver -p 8080
+        env:
+          - name: AIRFLOW__CORE__EXECUTOR
+            value: SequentialExecutor
