@@ -6,4 +6,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   resources:
-      storage: 1Gi
+    requests:
+      storage: 1Gi  # Certifique-se de que este campo está presente

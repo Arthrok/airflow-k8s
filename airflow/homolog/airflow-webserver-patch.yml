@@ -4,3 +4,19 @@ metadata:
   name: airflow-webserver
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: airflow-webserver  # Define o seletor
+  template:
+    metadata:
+      labels:
+        app: airflow-webserver  # Deve corresponder ao seletor
+    spec:
+      containers:
+        - name: airflow-webserver
+          image: apache/airflow:2.5.0  # Substitua pela versão correta
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AIRFLOW__CORE__EXECUTOR
+              value: LocalExecutor
