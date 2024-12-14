@@ -12,16 +12,16 @@ spec:
     metadata:
       labels:
         app: airflow-webserver
-  spec:
-    initContainers:
-      - name: airflow-db-init
-        image: apache/airflow:2.5.0
-        command: ["airflow", "db", "init"]
-    containers:
-      - name: airflow-webserver
-        image: apache/airflow:2.5.0
-        command: ["airflow", "webserver"]
-        args: ["-p", "8080"]
-        env:
-          - name: AIRFLOW__CORE__EXECUTOR
-            value: SequentialExecutor
+    spec:
+      initContainers:
+        - name: airflow-db-init
+          image: apache/airflow:2.5.0
+          command: ["airflow", "db", "init"]
+      containers:
+        - name: airflow-webserver
+          image: apache/airflow:2.5.0
+          command: ["airflow", "webserver"]
+          args: ["-p", "8080"]
+          env:
+            - name: AIRFLOW__CORE__EXECUTOR
+              value: SequentialExecutor
