@@ -3,6 +3,7 @@ resources:
   - pvc-logs.yml
   - deployment-patch.yml
   - airflow-secrets.yml
+  - airflow-webserver-service.yml
 
 patches:
   - path: deployment-patch.yml
