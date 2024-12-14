@@ -1,6 +1,6 @@
 resources:
   - ../base
 
-patchesStrategicMerge:
-  - airflow-webserver-patch.yaml
-  - secrets.yaml
+patches:
+  - path: airflow-webserver-patch.yml
+  - path: secrets.yml

@@ -1,11 +1,13 @@
 resources:
-  - pvc-dags.yaml
-  - pvc-logs.yaml
+  - pvc-dags.yml
+  - pvc-logs.yml
+  - deployment-patch.yml
+  - airflow-secrets.yml
 
-patchesStrategicMerge:
-  - deployment-patch.yaml
+patches:
+  - path: deployment-patch.yml
 
 configMapGenerator:
   - name: airflow-config
     files:
-      - airflow-values.yaml
+      - airflow-values.yml
