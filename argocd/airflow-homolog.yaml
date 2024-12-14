@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://seu-repositorio.git'
+    repoURL: 'https://github.com/Arthrok/airflow-k8s.git'
     targetRevision: main
     path: airflow/homolog
   destination:
